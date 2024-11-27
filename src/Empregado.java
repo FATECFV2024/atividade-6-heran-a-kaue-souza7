@@ -37,6 +37,10 @@ public class Empregado {
             aux = 0.27 * salario;
         }
         return(aux);
+     }
+
+    public double calcularINSS() {
+        return (0.11 * salario);
     }
 
 }
