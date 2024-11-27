@@ -28,7 +28,13 @@ public class Empregado {
         this.salario = salario;
     }
 
-    public double calcularIRPF(double salario) {
+    public void imprimirDados() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Endereço: " + endereco);
+        System.out.println("Salário: " + salario);
+    }
+
+    public double calcularIRPF() {
         double desconto_salario = salario - calcularINSS();
     
         if (desconto_salario < 2259.21) {
