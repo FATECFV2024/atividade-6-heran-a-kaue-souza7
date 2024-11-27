@@ -28,19 +28,44 @@ public class Empregado {
         this.salario = salario;
     }
 
-    public double calcularIrpf() {
-        double aux;
-        if (salario < 1800) {
-            aux = 0.1 * salario;
+    public double calcularIRPF(double salario) {
+        double desconto_salario = salario - calcularINSS();
+    
+        if (desconto_salario < 2259.21) {
+            return 0; // Isento de IRPF
+
+        } else if (desconto_salario >= 2259.21 && desconto_salario < 2826.66) {
+            return (desconto_salario * 0.075) - 158.40;
+
+        } else if (desconto_salario >= 2826.66 && desconto_salario < 3751.06) {
+            return (desconto_salario * 0.15) - 381.44;
+
+        } else if (desconto_salario >= 3751.06 && desconto_salario < 4664.69) {
+            return (desconto_salario * 0.225) - 662.77;
 
         } else {
-            aux = 0.27 * salario;
+            return (desconto_salario * 0.275) - 896.00;
         }
-        return(aux);
-     }
-
-    public double calcularINSS() {
-        return (0.11 * salario);
     }
+    
+
+     public double calcularINSS() {
+        if (salario < 1412.01) {
+            return salario * 0.075;
+
+        } else if (salario >= 1412.01 && salario < 2666.69) {
+            return salario * 0.09;
+
+        } else if (salario >= 2666.69 && salario < 4000.04) {
+            return salario * 0.12;
+
+        } else if (salario >= 4000.04 && salario <= 7786.03) {
+            return salario * 0.14;
+
+        } else {
+            return 7786.03 * 0.14; // Maximum limit
+        }
+    }
+    
 
 }
